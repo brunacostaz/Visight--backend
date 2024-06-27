@@ -1,0 +1,1 @@
+categoria_alimento = ['vegetal', 'carne']
