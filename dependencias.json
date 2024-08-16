@@ -1,0 +1,13 @@
+{
+    "extensao": [
+        "jupyter --> ms-toolsai.jupyter"
+    ],
+
+    "bibliotecas": [
+        "pandas", 
+        "numpy",
+        "openpyxl",
+        "ploty",
+        "dash"
+    ]
+}
