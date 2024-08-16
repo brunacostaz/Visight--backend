@@ -23,13 +23,9 @@ def calcular_rendimento(bruto,liquido):
     rendimento = (liquido/bruto)*100
     return rendimento
 
-def calcular_preco_unidade(bruto,valor):
-    preco_unidade = valor / bruto
-    return preco_unidade
-
-def calcular_prejuizo(peso_bruto,peso_liquido,preco_por_unidade):
-    custo_peso_bruto = peso_bruto * preco_por_unidade
-    custo_peso_liquido = peso_liquido * preco_por_unidade
+def calcular_prejuizo(peso_bruto,peso_liquido,preco_por_kg):
+    custo_peso_bruto = peso_bruto * preco_por_kg
+    custo_peso_liquido = peso_liquido * preco_por_kg
     prejuizo = custo_peso_bruto - custo_peso_liquido
     return prejuizo
 
