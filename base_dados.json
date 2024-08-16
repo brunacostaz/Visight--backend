@@ -1,0 +1,25 @@
+{
+    "custo_por_kg": {
+    "carne": {
+        "gado":{        
+            "picanha": [80, 78, 69, 86],
+            "file_mion": [],
+            "maminha": [],
+            "contrafile": [],
+            "alcatra": [],
+            "costela": [],
+            "fraldinha": []
+        },
+        "frango": [],
+        "peixe": {
+            "namorado": [],
+            "tilapia": [],
+            "salmao": [],
+            "porquinho": [],
+            "cacao": [],
+            "peixe_espada": []
+        }
+
+    }
+}
+}
