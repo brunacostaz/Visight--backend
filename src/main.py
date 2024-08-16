@@ -1,5 +1,5 @@
-from funcoes import *
-from listas import *
+from src.funcoes import *
+from src.listas import *
 import random 
 
 # Estrutura do código
