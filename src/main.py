@@ -2,14 +2,31 @@ from funcoes import *
 from listas import *
 import random 
 
-# Estrutura do código
-# pede os inputs para o usuário do alimento, tipo de corte e valor pago 
-# recebe os peços do arduino do alimento bruto e do alimento liquido
-# realiza os cálculos do fator de correção, rentabilidade, prejuízos, desperdício
+import os
+import json
 
-tipo_alimento = forca_opcao(categoria_alimento,'Qual o tipo de alimento que você irá preparar? (carne/vegetal)\n-> ','Digite somente se o alimento é vegetal ou carne')
-alimento = input('Qual o alimento que você irá preparar? (ex: picanha, cenoura...)\n-> ')
-preco_kg = verificar_num('Qual o valor pago pelo kg? ')
+os.chdir("D:/Fiap/projetos/WasteZero-IC/WasteZero--python/data")
+import json
+with open("base_dados.json", 'r') as file:
+    base_dados = json.load(file)
+
+#simulação do recebimento de dados da visão computacional
+
+keys_carne = '\n'.join(tipos_carne.keys())
+tipo_alimento = forca_opcao(tipos_carne,'Qual o tipo de carne você irá preparar?\n-> ',f'Digite somente se é do tipo: \n\n{keys_carne}')
+
+if tipo_alimento == 'gado' or tipo_alimento == 'peixe':
+    formatacao_lista = '\n'.join(tipos_carne[tipo_alimento])
+    alimento = forca_opcao(tipos_carne[tipo_alimento], 'Qual o alimento que você irá preparar?\n-> ', f'Digite somente esses: \n\n{formatacao_lista}')
+
+    ultimo_indice = len(base_dados['custo_por_kg']['carne'][tipo_alimento][alimento]) - 1
+else:
+    alimento = tipo_alimento
+    ultimo_indice = len(base_dados['custo_por_kg']['carne'][tipo_alimento]) - 1
+
+preco_kg = base_dados['custo_por_kg']['carne'][tipo_alimento][alimento][ultimo_indice]
+
+#simulação dos pesos medidos (esses dados virão da balança)
 
 valor_min_kg = 1000
 valor_max_kg = 7000
@@ -19,8 +36,9 @@ peso_liquido = random.randint(valor_min_kg,valor_max_kg)
 valor_min_g = 30
 valor_max_g = 300
 peso_corte = random.randint(valor_min_g,valor_max_g)
-print(f'Peso Bruto: {peso_bruto} g\nPeso Liquído: {peso_liquido} g\nPeso pós corte: {peso_corte} g')
+print(f'\nPeso Bruto: {peso_bruto} g\nPeso Liquído: {peso_liquido} g\nPeso pós corte: {peso_corte} g\nFator de correção: {peso_liquido - peso_corte} g')
 
+#cálculos 
 
 rendimento = calcular_rendimento(peso_bruto,peso_liquido)
 preco_unidade = calcular_preco_unidade(peso_bruto,preco_kg)
