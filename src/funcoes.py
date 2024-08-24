@@ -1,12 +1,6 @@
-def meu_in(lista, opcao):
-    for i in range(len(lista)):
-        if opcao == lista[i]:
-            return True
-    return False    
-
 def forca_opcao(lista,msg,erro):
     elemento = input(msg)
-    while not meu_in(lista, elemento):
+    while elemento not in lista:
         print(erro)
         elemento = input(msg)
     return elemento
@@ -19,7 +13,7 @@ def verificar_num(msg):
     num = int(num)
     return num
 
-'''def calcular_rendimento(bruto,liquido):
+def calcular_rendimento(bruto,liquido):
     rendimento = (liquido/bruto)*100
     return rendimento
 
@@ -27,20 +21,12 @@ def verificar_num(msg):
 def calcular_preco_unidade(bruto,valor):
     preco_unidade = valor / bruto
     return preco_unidade
-'''
+
 def calcular_prejuizo(peso_bruto,peso_liquido,preco_por_unidade):
     custo_peso_bruto = peso_bruto * preco_por_unidade
     custo_peso_liquido = peso_liquido * preco_por_unidade
-    prejuizo = custo_peso_bruto - custo_peso_liquido
-    return prejuizo
-
-
-
-def calcular_prejuizo(peso_bruto,peso_liquido,preco_por_kg):
-    custo_peso_bruto = peso_bruto * preco_por_kg
-    custo_peso_liquido = peso_liquido * preco_por_kg
     qtd_desperdicio = custo_peso_bruto - custo_peso_liquido
-    prejuizo = qtd_desperdicio * preco_por_kg
+    prejuizo = qtd_desperdicio * preco_por_unidade
     return prejuizo
 
 def calcular_desperdicio(bruto,liquido):
