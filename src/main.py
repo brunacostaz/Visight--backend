@@ -46,5 +46,12 @@ prejuizo = calcular_prejuizo(peso_bruto, peso_liquido, preco_unidade)
 desperdicio = calcular_desperdicio(peso_bruto,peso_liquido)
 percentual_desperdicio = desperdicio_percentual(peso_bruto,peso_liquido)
 
+vendido = 114 
+preco_kg_restaurante = 42.70
+faturamento = calcular_faturamento_real(vendido, preco_kg_restaurante)
 
-print(f'\nAnálise de dados\n\nRendimento: {rendimento:.2f}%\nPrejuízo: {prejuizo:.2f}%\nDesperdício: {desperdicio:.2f} g - equivalente a {percentual_desperdicio:.2f}%')
+faturamento_ideal = calcular_faturamento_ideal(faturamento, prejuizo)
+
+
+
+print(f'\nAnálise de dados de {alimento}\n\nRendimento kg: {rendimento:.2f}%\nPrejuízo: {prejuizo:.2f}%\nDesperdício: {desperdicio:.2f} g -> equivalente a {percentual_desperdicio:.2f}%\nFaturamento recebido: R$ {faturamento:.2f}\nFaturamento caso não houvesse desperdício: R$ {faturamento_ideal:.2f}')
