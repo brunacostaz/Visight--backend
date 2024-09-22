@@ -5,7 +5,7 @@ import random
 import os
 import json
 
-os.chdir("D:/Fiap/projetos/WasteZero-IC/WasteZero--python/data")
+os.chdir("D:/Fiap/projetos/WasteZero-IC/WasteZero--python/external_data")
 import json
 with open("base_dados.json", 'r') as file:
     base_dados = json.load(file)

@@ -6,8 +6,8 @@
     "bibliotecas": [
         "pandas", 
         "numpy",
-        "openpyxl",
-        "ploty",
-        "dash"
+        "tensorflow",
+        "opencv-python",
+        "mysql-connector-python"
     ]
 }
