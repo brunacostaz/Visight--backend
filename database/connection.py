@@ -19,34 +19,41 @@ cursor = conexao.cursor()
 # Create
 
 nome = 'manga'
-id_categoria = 7
-comando = f'INSERT INTO info_alimentos (nome, id_categoria) VALUES ("{nome}", {id_categoria})'
+# id_categoria = 7
+# comando = f'INSERT INTO info_alimentos (nome_alimento) VALUES ("{nome}")'
+# cursor.execute(comando)
+# conexao.commit()
+
+
+ # Read
+
+alimento = 'manga'
+
+comando = f'SELECT id_alimentos FROM info_alimentos WHERE nome_alimento = "{alimento}" ORDER BY id_alimentos DESC LIMIT 1'
 cursor.execute(comando)
-conexao.commit()
+id_encontrado = cursor.fetchone()
+
+if id_encontrado:
+    id_alimento = id_encontrado[0]
+else:
+    print('Nenhum dado encontrado')
+
+print(id_encontrado)
+print(id_alimento)
 
 
-# # Read
+# # Update
 
-comando = 'SELECT * FROM info_alimentos'
-cursor.execute(comando)
-dados = cursor.fetchall()
+# peso_liquido = 80
 
-print(dados)
-
-
-# Update
-
-nome = 'manga'
-id_categoria = 10
-
-comando = f'UPDATE info_alimentos SET id_categoria = {id_categoria} WHERE nome = "{nome}"'
-cursor.execute(comando)
-conexao.commit()
+# comando = f'UPDATE info_alimentos SET peso_liquido = {peso_liquido} WHERE id_alimentos = "{id_alimento}"'
+# cursor.execute(comando)
+# conexao.commit()
 
 
 # Delete
 
-id_alimento = 2
+id_alimento = 4
 
 comando = f'DELETE FROM info_alimentos WHERE id_alimentos = {id_alimento}'
 cursor.execute(comando)
