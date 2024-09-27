@@ -1,0 +1,148 @@
+{
+    "Alimentos" : [
+        {
+            "nome": "melancia",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "abacaxi",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "maca",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "banana",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "melao",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "morango",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "cereja",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "kiwi",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "laranja",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "abacate",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "uva",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "alface",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        },
+        {
+            "nome": "cenoura",
+            "compra": {
+                "custo_kg" : [],
+                "quantidade_kg": []
+            },
+            "venda": {
+                "preco_venda" : [],
+                "quantidade_vendas" : []
+            }
+        }
+    ]
+}
+

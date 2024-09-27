@@ -2,7 +2,6 @@ def calcular_rendimento(bruto,liquido):
     rendimento = (liquido/bruto)*100
     return rendimento
 
-
 def calcular_preco_unidade(bruto,valor):
     preco_unidade = valor / bruto
     return preco_unidade
