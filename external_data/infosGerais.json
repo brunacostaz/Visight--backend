@@ -1,47 +1,47 @@
 {
-    "Alimentos": [
+    "alimentos": [
         {
             "nome": "melancia",
             "compra": {
-            "custo_kg": 3.50,
-            "quantidade_kg": 50
+                "custo_kg": 3.50,
+                "quantidade_kg": 50
             },
             "venda": {
-            "preco_venda": 6.00,
-            "quantidade_vendas": 30
+                "preco_venda": 6.00,
+                "quantidade_vendas": 30
             }
         },
         {
             "nome": "abacaxi",
             "compra": {
-            "custo_kg": 5.00,
-            "quantidade_kg": 20
+                "custo_kg": 5.00,
+                "quantidade_kg": 20
             },
             "venda": {
-            "preco_venda": 9.00,
-            "quantidade_vendas": 15
+                "preco_venda": 9.00,
+                "quantidade_vendas": 15
             }
         },
         {
             "nome": "maca",
             "compra": {
-            "custo_kg": 7.00,
-            "quantidade_kg": 25
+                "custo_kg": 7.00,
+                "quantidade_kg": 25
             },
             "venda": {
-            "preco_venda": 12.00,
-            "quantidade_vendas": 20
+                "preco_venda": 12.00,
+                "quantidade_vendas": 20
             }
         },
         {
             "nome": "banana",
             "compra": {
-            "custo_kg": 4.50,
-            "quantidade_kg": 40
+                "custo_kg": 4.50,
+                "quantidade_kg": 40
             },
             "venda": {
-            "preco_venda": 7.00,
-            "quantidade_vendas": 35
+                "preco_venda": 7.00,
+                "quantidade_vendas": 35
             }
         },
         {

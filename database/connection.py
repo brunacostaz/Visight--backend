@@ -18,7 +18,7 @@ cursor = conexao.cursor()
 
 # Create
 
-nome = 'manga'
+# nome = 'manga'
 # id_categoria = 7
 # comando = f'INSERT INTO info_alimentos (nome_alimento) VALUES ("{nome}")'
 # cursor.execute(comando)
@@ -38,26 +38,25 @@ if id_encontrado:
 else:
     print('Nenhum dado encontrado')
 
-print(id_encontrado)
 print(id_alimento)
 
 
 # # Update
 
-# peso_liquido = 80
+peso_bruto = 100
 
-# comando = f'UPDATE info_alimentos SET peso_liquido = {peso_liquido} WHERE id_alimentos = "{id_alimento}"'
-# cursor.execute(comando)
-# conexao.commit()
+comando = f'UPDATE info_alimentos SET peso_bruto = {peso_bruto} WHERE id_alimentos = "{id_alimento}"'
+cursor.execute(comando)
+conexao.commit()
 
 
 # Delete
 
-id_alimento = 4
+# id_alimento = 3
 
-comando = f'DELETE FROM info_alimentos WHERE id_alimentos = {id_alimento}'
-cursor.execute(comando)
-conexao.commit()
+# comando = f'DELETE FROM info_alimentos WHERE id_alimentos = {id_alimento}'
+# cursor.execute(comando)
+# conexao.commit()
 
-cursor.close()
-conexao.close()
+# cursor.close()
+# conexao.close()

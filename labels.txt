@@ -1,0 +1,3 @@
+0 sem fruta
+1 maca
+2 banana
