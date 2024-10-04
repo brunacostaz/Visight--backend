@@ -3,23 +3,20 @@ import cv2
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 import tensorflow as tf
-print(tf.__version__)
 
 
 # Carregando o modelo
 try:
-    modelo_carregado = load_model("keras_model.h5")
+    modelo_carregado = load_model("D:/Fiap/projetos/Visight-IC/WasteZero--python/vision_v2/modeloVisao.h5")
 except Exception as e:
     print(f"Erro ao carregar o modelo: {e}")
     exit(1)
 
 # Lista de classes (certifique-se de que elas estão na ordem correta do modelo)
-classes_cifar10 = ['maçã', 'banana', 'manga', 'melancia', 'cereja', 
-                   'morango', 'abacaxi', 'abacate', 'laranja', 'kiwi', 
-                   'alface', 'uva', 'cenoura']
+classes_cifar10 = ['sem fruta', 'maca', 'banana']
 
 # Inicia captura da webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 if not cap.isOpened():
     print("Erro ao abrir a webcam.")
     exit(1)
@@ -27,6 +24,7 @@ if not cap.isOpened():
 while True:
     # Captura o frame da webcam
     ret, frame = cap.read()
+    #ret, frame = (True, cv2.imread('vision_v2\imgs\img_1491.jpeg'))
     if not ret:
         print("Erro ao capturar frame da webcam.")
         break
@@ -47,6 +45,7 @@ while True:
     # Obtém a classe predita
     classe_predita = np.argmax(predicao)
     nome_classe_predita = classes_cifar10[classe_predita]
+    
 
     # Mostra o nome da classe no frame
     cv2.putText(frame, f"Classe predita: {nome_classe_predita}", (10, 30),
