@@ -5,6 +5,24 @@ from tensorflow.keras.preprocessing.image import img_to_array
 import tensorflow as tf
 
 
+def encontrar_bounding_box(frame):
+    # Converte a imagem para tons de cinza
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    
+    # Aplicar um limiar para destacar a fruta
+    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
+    
+    # Encontra os contornos
+    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    if contours:
+        # Encontra o contorno com a maior área (presumivelmente a fruta)
+        maior_contorno = max(contours, key=cv2.contourArea)
+        # Retorna a bounding box (x, y, w, h)
+        return cv2.boundingRect(maior_contorno)
+    
+    return None
+
 # Carregando o modelo
 try:
     modelo_carregado = load_model("D:/Fiap/projetos/Visight-IC/WasteZero--python/vision_v2/modeloVisao.h5")
@@ -45,7 +63,21 @@ while True:
     # Obtém a classe predita
     classe_predita = np.argmax(predicao)
     nome_classe_predita = classes_cifar10[classe_predita]
-    
+
+    # Obtém a probabilidade máxima
+    confidencia = np.max(predicao)
+
+    if confidencia > 0.90:
+        print(f"Fruta identificada: {nome_classe_predita} (Confiança: {confidencia:.2f})")
+        alimento = nome_classe_predita
+
+     # Tenta encontrar a bounding box usando contornos
+    bounding_box = encontrar_bounding_box(frame)
+
+     # Se uma bounding box foi encontrada, desenha na imagem
+    if bounding_box is not None:
+        x, y, w, h = bounding_box
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)  # Desenha o retângulo
 
     # Mostra o nome da classe no frame
     cv2.putText(frame, f"Classe predita: {nome_classe_predita}", (10, 30),
