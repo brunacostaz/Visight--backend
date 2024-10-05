@@ -1,0 +1,27 @@
+[
+    {
+        "peso": 0.27,
+        "tipo_alimento": "maca",
+        "timestamp": "2024-10-04 18:10:02"
+    },
+    {
+        "peso": 0.19,
+        "tipo_alimento": "maca",
+        "timestamp": "2024-10-04 18:10:05"
+    },
+    {
+        "peso": 0.19,
+        "tipo_alimento": "maca",
+        "timestamp": "2024-10-04 18:10:09"
+    },
+    {
+        "peso": 0.19,
+        "tipo_alimento": "maca",
+        "timestamp": "2024-10-04 18:10:12"
+    },
+    {
+        "peso": 0.08,
+        "tipo_alimento": "banana",
+        "timestamp": "2024-10-04 18:10:38"
+    }
+]
