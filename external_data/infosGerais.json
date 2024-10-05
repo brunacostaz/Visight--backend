@@ -1,28 +1,6 @@
 {
     "alimentos": [
         {
-            "nome": "melancia",
-            "compra": {
-                "custo_kg": 3.50,
-                "quantidade_kg": 50
-            },
-            "venda": {
-                "preco_venda": 6.00,
-                "quantidade_vendas": 30
-            }
-        },
-        {
-            "nome": "abacaxi",
-            "compra": {
-                "custo_kg": 5.00,
-                "quantidade_kg": 20
-            },
-            "venda": {
-                "preco_venda": 9.00,
-                "quantidade_vendas": 15
-            }
-        },
-        {
             "nome": "maca",
             "compra": {
                 "custo_kg": 7.00,
@@ -42,105 +20,6 @@
             "venda": {
                 "preco_venda": 7.00,
                 "quantidade_vendas": 35
-            }
-        },
-        {
-            "nome": "melao",
-            "compra": {
-                "custo_kg": 6.00,
-                "quantidade_kg": 30
-            },
-            "venda": {
-                "preco_venda": 10.00,
-                "quantidade_vendas": 25
-            }
-        },
-        {
-            "nome": "morango",
-            "compra": {
-                "custo_kg": 18.00,
-                "quantidade_kg": 15
-            },
-            "venda": {
-                "preco_venda": 25.00,
-                "quantidade_vendas": 10
-            }
-        },
-        {
-            "nome": "cereja",
-            "compra": {
-                "custo_kg": 40.00,
-                "quantidade_kg": 5
-            },
-            "venda": {
-                "preco_venda": 55.00,
-                "quantidade_vendas": 3
-            }
-        },
-        {
-            "nome": "kiwi",
-            "compra": {
-                "custo_kg": 20.00,
-                "quantidade_kg": 10
-            },
-            "venda": {
-                "preco_venda": 30.00,
-                "quantidade_vendas": 8
-            }
-        },
-        {
-            "nome": "laranja",
-            "compra": {
-                "custo_kg": 4.00,
-                "quantidade_kg": 35
-            },
-            "venda": {
-                "preco_venda": 7.00,
-                "quantidade_vendas": 28
-            }
-        },
-        {
-            "nome": "abacate",
-            "compra": {
-                "custo_kg": 10.00,
-                "quantidade_kg": 15
-            },
-            "venda": {
-                "preco_venda": 16.00,
-                "quantidade_vendas": 12
-            }
-        },
-        {
-            "nome": "uva",
-            "compra": {
-                "custo_kg": 12.00,
-                "quantidade_kg": 20
-            },
-            "venda": {
-                "preco_venda": 18.00,
-                "quantidade_vendas": 18
-            }
-        },
-        {
-            "nome": "alface",
-            "compra": {
-                "custo_kg": 5.00,
-                "quantidade_kg": 10
-            },
-            "venda": {
-                "preco_venda": 8.00,
-                "quantidade_vendas": 9
-            }
-        },
-        {
-            "nome": "cenoura",
-            "compra": {
-                "custo_kg": 6.00,
-                "quantidade_kg": 20
-            },
-            "venda": {
-                "preco_venda": 10.00,
-                "quantidade_vendas": 17
             }
         }
     ]
