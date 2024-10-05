@@ -1,0 +1,62 @@
+[
+    {
+        "alimento": "maca",
+        "peso_bruto": 0.27,
+        "peso_liquido": 0.24000000000000002,
+        "peso_corte": 0.22000000000000003,
+        "rendimento": 88.8888888888889,
+        "prejuizo": 0.0,
+        "desperdicio": 0.03,
+        "percentual_desperdicio": 11.11111111111111,
+        "faturamento": 0,
+        "timestamp": "2024-10-04 18:10:53"
+    },
+    {
+        "alimento": "maca",
+        "peso_bruto": 0.19,
+        "peso_liquido": 0.16,
+        "peso_corte": 0.14,
+        "rendimento": 84.21052631578947,
+        "prejuizo": 0.0,
+        "desperdicio": 0.03,
+        "percentual_desperdicio": 15.789473684210526,
+        "faturamento": 0,
+        "timestamp": "2024-10-04 18:10:53"
+    },
+    {
+        "alimento": "maca",
+        "peso_bruto": 0.19,
+        "peso_liquido": 0.16,
+        "peso_corte": 0.14,
+        "rendimento": 84.21052631578947,
+        "prejuizo": 0.0,
+        "desperdicio": 0.03,
+        "percentual_desperdicio": 15.789473684210526,
+        "faturamento": 0,
+        "timestamp": "2024-10-04 18:10:53"
+    },
+    {
+        "alimento": "maca",
+        "peso_bruto": 0.19,
+        "peso_liquido": 0.16,
+        "peso_corte": 0.14,
+        "rendimento": 84.21052631578947,
+        "prejuizo": 0.0,
+        "desperdicio": 0.03,
+        "percentual_desperdicio": 15.789473684210526,
+        "faturamento": 0,
+        "timestamp": "2024-10-04 18:10:53"
+    },
+    {
+        "alimento": "banana",
+        "peso_bruto": 0.08,
+        "peso_liquido": 0.05,
+        "peso_corte": 0.030000000000000002,
+        "rendimento": 62.5,
+        "prejuizo": 0.0,
+        "desperdicio": 0.03,
+        "percentual_desperdicio": 37.5,
+        "faturamento": 0,
+        "timestamp": "2024-10-04 18:10:53"
+    }
+]

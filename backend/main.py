@@ -1,58 +1,75 @@
 from funcoes import *
 from listas import *
-import random 
-
 import os
 import json
+from datetime import datetime
 
+# Definindo o diretório para leitura de dados externos
 os.chdir("D:/Fiap/projetos/Visight-IC/WasteZero--python/external_data")
-import json
+
+# Carregando dados do arquivo 'infosGerais.json'
 with open("infosGerais.json", 'r') as file:
-    base_dados = json.load(file)
+    dados_restaurantes = json.load(file)
 
-alimentos = base_dados["alimentos"]
-#simulação do recebimento de dados da visão computacional
+# Extraindo os nomes dos alimentos dos dados carregados
+dados_externos = []
+for alimento in dados_restaurantes["alimentos"]:
+    dados_externos.append(alimento["nome"])
 
-keys_alimentos = []
+# Mudando o diretório para onde o arquivo 'pesos.json' está localizado
+os.chdir("D:/Fiap/projetos/Visight-IC/WasteZero--python/database")
 
-for alimento in alimentos:
-    keys_alimentos.append(alimento["nome"])
+# Carregando dados do arquivo 'pesos.json'
+with open("pesos.json", 'r') as file:
+    dados_internos = json.load(file)
 
-keys = '\n'.join(keys_alimentos)
+# Lista para armazenar os resultados dos cálculos
+dados_resultados = []
 
-tipo_alimento = input(f'Qual o alimento você irá preparar?\n {keys}\n--> ')
+# Processamento dos dados internos
+for itens in dados_internos:
+    analise = itens.copy()  # Cópia dos dados para análise
 
-custo_kg = 0
-qnt_kg = 0
-preco_venda = 0
-qnt_vendas = 0
-indice_alimento = 0
+    # Definindo variáveis
+    custo_kg = 0  # Deve ser ajustado conforme necessário
+    qnt_kg = 0    # Quantidade em kg (pode ser atualizado)
+    preco_venda = 0  # Preço de venda por unidade
+    qnt_vendas = 0   # Quantidade de vendas
 
-for i in range(len(alimentos)):
-    if tipo_alimento == alimentos[i]["nome"]:
-        custo_kg = alimentos[i]["compra"]["custo_kg"]
-        qnt_kg = alimentos[i]["compra"]["quantidade_kg"]
-        preco_venda = alimentos[i]["venda"]["preco_venda"]
-        qnt_vendas = alimentos[i]["venda"]["quantidade_vendas"]
-        indice_alimento = i
+    # Cálculo do peso líquido e peso pós-corte a partir do peso bruto
+    peso_bruto = analise["peso"]
+    peso_liquido = peso_bruto - 0.03
+    peso_corte = peso_liquido - 0.02
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Obtendo o timestamp atual
 
-#simulação dos pesos medidos (esses dados virão da balança)
+    # Realizando os cálculos
+    rendimento = calcular_rendimento(peso_bruto, peso_liquido)
+    preco_unidade = calcular_preco_unidade(peso_bruto, custo_kg)
+    prejuizo = calcular_prejuizo(peso_bruto, peso_liquido, preco_unidade)
+    desperdicio = calcular_desperdicio(peso_bruto, peso_liquido)
+    percentual_desperdicio = desperdicio_percentual(peso_bruto, peso_liquido)
+    faturamento = calcular_faturamento(qnt_vendas, preco_venda)
 
-peso_bruto = random.randint(5000,7000)
-peso_liquido = random.randint(1000,4000)
+    # Armazenando os resultados em um dicionário
+    resultado = {
+        "alimento": analise["tipo_alimento"],
+        "peso_bruto": peso_bruto,
+        "peso_liquido": peso_liquido,
+        "peso_corte": peso_corte,
+        "rendimento": rendimento,
+        "prejuizo": prejuizo,
+        "desperdicio": desperdicio,
+        "percentual_desperdicio": percentual_desperdicio,
+        "faturamento": faturamento,
+        "timestamp": timestamp
+    }
 
-valor_min_g = 30
-valor_max_g = 300
-peso_corte = random.randint(valor_min_g,valor_max_g)
-print(f'\nPeso Bruto: {peso_bruto} g\nPeso Liquído: {peso_liquido} g\nPeso pós corte: {peso_corte} g\nFator de correção: {peso_liquido - peso_corte} g')
+    # Adicionando o resultado à lista
+    dados_resultados.append(resultado)
 
-#cálculos 
+# Salvando os resultados em um novo arquivo JSON
+output_file_path = "D:/Fiap/projetos/Visight-IC/WasteZero--python/database/resultados_analise.json"
+with open(output_file_path, 'w') as outfile:
+    json.dump(dados_resultados, outfile, indent=4)
 
-rendimento = calcular_rendimento(peso_bruto,peso_liquido)
-preco_unidade = calcular_preco_unidade(peso_bruto,custo_kg)
-prejuizo = calcular_prejuizo(peso_bruto, peso_liquido, preco_unidade)
-desperdicio = calcular_desperdicio(peso_bruto,peso_liquido)
-percentual_desperdicio = desperdicio_percentual(peso_bruto,peso_liquido)
-faturamento = calcular_faturamento(qnt_vendas, preco_venda)
-
-print(f'\nAnálise de dados de {alimentos[indice_alimento]["nome"]}\n\nPeso Bruto: {peso_bruto}\nPeso liquído: {peso_liquido}\nPeso final: {peso_corte}\nRendimento kg: {rendimento:.2f}%\nPrejuízo: {prejuizo:.2f}%\nDesperdício: {desperdicio:.2f} g -> equivalente a {percentual_desperdicio:.2f}%\nFaturamento recebido: R$ {faturamento:.2f}')
+print(f"Dados processados e armazenados em {output_file_path}")
