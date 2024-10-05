@@ -1,4 +1,5 @@
 import mysql.connector
+import json
 
 conexao = mysql.connector.connect(
     host= 'localhost',
@@ -9,54 +10,32 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
-# CRUD
 
-# comando = '' # cria um comando SQL
-# cursor.execute(comando) # executa o comando 
-# conexao.commit() # se for um comando de edição (Create, Update ou Delete), precisa dar commit
-# dados = cursor.fetchall() # se for um comando de leitura (Read), precisa de um fetchall() para pegar as informações e armazenar no código
+# Função para inserir dados no banco de dados
+def inserir_dados_no_banco(peso, alimento, timestamp):
+    query = "INSERT INTO tabela_alimentos (peso, alimento, timestamp) VALUES (%s, %s, %s)"
+    valores = (peso, alimento, timestamp)
+    cursor.execute(query, valores)
+    conexao.commit()
+    print(f"Inserido no banco de dados: {peso}kg, {alimento}, {timestamp}")
 
-# Create
+# Função para ler o arquivo JSON e inserir os dados no MySQL
+def ler_json_inserir_mysql():
+    json_file_path = "D:/Fiap/projetos/Visight-IC/WasteZero--python/database/pesos.json"
+    
+    with open(json_file_path, 'r') as file:
+        dados = json.load(file)
 
-# nome = 'manga'
-# id_categoria = 7
-# comando = f'INSERT INTO info_alimentos (nome_alimento) VALUES ("{nome}")'
-# cursor.execute(comando)
-# conexao.commit()
+        for registro in dados:
+            peso = registro["peso"]
+            alimento = registro["alimento"]
+            timestamp = registro["timestamp"]
+            
+            # Inserir cada registro no banco de dados
+            inserir_dados_no_banco(peso, alimento, timestamp)
 
+# Chamar a função para ler o JSON e inserir os dados no banco
+ler_json_inserir_mysql()
 
- # Read
-
-alimento = 'manga'
-
-comando = f'SELECT id_alimentos FROM info_alimentos WHERE nome_alimento = "{alimento}" ORDER BY id_alimentos DESC LIMIT 1'
-cursor.execute(comando)
-id_encontrado = cursor.fetchone()
-
-if id_encontrado:
-    id_alimento = id_encontrado[0]
-else:
-    print('Nenhum dado encontrado')
-
-print(id_alimento)
-
-
-# # Update
-
-peso_bruto = 100
-
-comando = f'UPDATE info_alimentos SET peso_bruto = {peso_bruto} WHERE id_alimentos = "{id_alimento}"'
-cursor.execute(comando)
-conexao.commit()
-
-
-# Delete
-
-# id_alimento = 3
-
-# comando = f'DELETE FROM info_alimentos WHERE id_alimentos = {id_alimento}'
-# cursor.execute(comando)
-# conexao.commit()
-
-# cursor.close()
-# conexao.close()
+# Fechar a conexão
+conexao.close()
