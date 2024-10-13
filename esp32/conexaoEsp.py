@@ -177,7 +177,7 @@ while True:
                 print(f"Valor inválido recebido: {peso_serial}")
                 continue
 
-            # Verifica se o peso é zero (fruta removida)
+            # Verifica se o peso é zero 
             if peso_atual == 0:
                 print("Peso igual a zero, aguardando nova fruta...")
                 peso_anterior = None
@@ -194,7 +194,7 @@ while True:
                 print(f"Peso estável por {estabilizado_por} leituras")
 
                 # Se o peso permanecer estável pelo tempo suficiente, considerar estabilizado
-                if estabilizado_por >= tempo_espera:
+                if estabilizado_por > tempo_espera:
                     peso_estabilizado = peso_atual
                     print(f'Peso estabilizado e computado: {peso_estabilizado:.2f} kg')
 
@@ -226,7 +226,7 @@ while True:
 
                     # Reinicia o contador de estabilização para aguardar nova fruta
                     estabilizado_por = 0
-                    peso_anterior = None  # Espera que o peso volte a zero antes de registrar nova fruta
+                    peso_anterior = None 
 
     except serial.SerialException as e:
         print(f"Erro de comunicação serial: {e}")
