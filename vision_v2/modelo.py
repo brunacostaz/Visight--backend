@@ -125,7 +125,7 @@ def encontrar_bounding_box(frame):
 
 def reconhecer_alimento():    
     # Inicia a captura da webcam
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         print("Erro ao abrir a webcam.")
         return None
