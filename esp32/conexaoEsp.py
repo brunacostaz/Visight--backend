@@ -46,10 +46,14 @@ def filtrar_pesos(peso):
 # Função para enviar alimento identificado ao ESP via serial
 def enviar_alimento_para_esp(alimento):
     try:
-        comunicacao.write(alimento.encode())
-        print(f"Alimento enviado ao ESP: {alimento}")
+        validacao = 'Alimento reconhecido'
+        comunicacao.write((validacao + '\n' ).encode())
+        time.sleep(1)
+        print(f'Validação enviada!')
+        time.sleep(1)
     except Exception as e:
         print(f"Erro ao enviar dado para o ESP: {e}")
+
 
 # Loop principal para monitorar o peso e enviar alimento ao ESP
 while True:
@@ -60,14 +64,11 @@ while True:
         time.sleep(2)
         tipo_alimento = reconhecer_alimento()
 
-        if tipo_alimento == None or tipo_alimento == 'sem fruta':
+        if tipo_alimento == None:
             continue
 
         time.sleep(2)
-        validacao = 'Alimento reconhecido'
-        comunicacao.write(validacao.encode())
-        print(f'Alimento {tipo_alimento}\nValidação enviada!')
-        time.sleep(1)
+        enviar_alimento_para_esp(tipo_alimento)
         
         if comunicacao.in_waiting > 0:
             # Recebe dados da célula de carga via serial
