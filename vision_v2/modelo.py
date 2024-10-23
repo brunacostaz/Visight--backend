@@ -65,7 +65,7 @@ def encontrar_bounding_box(frame):
 
 # Carregando o modelo
 try:
-    modelo_carregado = load_model("D:/Fiap/projetos/Visight-IC/WasteZero--python/vision_v2/modeloVisao.h5")
+    modelo_carregado = load_model("D:/Fiap/projetos/Visight-IC/WasteZero--python/vision_v2/modeloTeste.h5")
 except Exception as e:
     print(f"Erro ao carregar o modelo: {e}")
     exit(1)
@@ -132,20 +132,22 @@ async def receber_pesoLiquido():
             pesoLiquido = comunicacao.readline().decode('utf-8').strip()
             pesoPote = 0.40
             print(f"Dados recebidos: {pesoLiquido}")
-            print(f'Jonas {nome_classe_predita}')
-            print(f'Jonas {pesoLiquido}')
-            print(f'Jonas {pesoPote}')
-            print(f'Jonas {pesoBruto}')
+            
+            try:
+                pesoLiquido = float(pesoLiquido)
+                        
+            except ValueError:
+                print(f"Valor inválido recebido: {pesoLiquido}")
+                return
+            
+            if pesoBruto <= 0 or pesoLiquido <= 0:
+                return
+                
             inserirBD(nome_classe_predita, pesoLiquido - pesoPote, pesoBruto)
-        
-        try:
-            pesoLiquido = float(pesoLiquido)
-                    
-        except ValueError:
-            print(f"Valor inválido recebido: {pesoLiquido}")
             
     except serial.SerialException as e:
         print(f"Erro de comunicação serial: {e}")
+        return
 
 timer = 30
 
