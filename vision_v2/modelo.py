@@ -65,7 +65,7 @@ def encontrar_bounding_box(frame):
 
 # Carregando o modelo
 try:
-    modelo_carregado = load_model("D:/Fiap/projetos/Visight-IC/WasteZero--python/vision_v2/modeloTeste.h5")
+    modelo_carregado = load_model("D:/Fiap/projetos/Visight-IC/WasteZero--python/vision_v2/modeloBruto.h5")
 except Exception as e:
     print(f"Erro ao carregar o modelo: {e}")
     exit(1)
@@ -76,13 +76,14 @@ pesoLiquido = 0
 pesoBruto = 0
 
 # Inicia captura da webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 if not cap.isOpened():
     print("Erro ao abrir a webcam.")
     exit(1)
 
 async def receber_pesoBruto():
     global pesoBruto
+    global fruta_pesada
 
     try:
         # Limpa o buffer de entrada para evitar leitura de dados antigos
@@ -103,7 +104,7 @@ async def receber_pesoBruto():
         
         try:
             pesoBruto = float(pesoBruto)
-                    
+            fruta_pesada = nome_classe_predita
         except ValueError:
             print(f"Valor inválido recebido: {pesoBruto}")
             
@@ -130,7 +131,6 @@ async def receber_pesoLiquido():
         if comunicacao.in_waiting > 0:
             # Recebe dados da célula de carga via serial
             pesoLiquido = comunicacao.readline().decode('utf-8').strip()
-            pesoPote = 0.40
             print(f"Dados recebidos: {pesoLiquido}")
             
             try:
@@ -143,7 +143,10 @@ async def receber_pesoLiquido():
             if pesoBruto <= 0 or pesoLiquido <= 0:
                 return
                 
-            inserirBD(nome_classe_predita, pesoLiquido - pesoPote, pesoBruto)
+            inserirBD(nome_classe_predita, pesoLiquido, pesoBruto)
+            pesoBruto = 0
+            pesoLiquido = 0
+            nome_classe_predita = ''
             
     except serial.SerialException as e:
         print(f"Erro de comunicação serial: {e}")
@@ -250,30 +253,30 @@ while True:
     
     if nome_classe_predita == 'sem fruta':
         timer = 30
-    elif nome_classe_predita == 'maca' or nome_classe_predita == 'banana':
+    
+    elif (nome_classe_predita == 'maca' or nome_classe_predita == 'banana') and pesoBruto == 0:
         timer -= 1
         if timer < 0:
             timer = 30
         elif nome_classe_predita != frutaAnterior:
             timer = 30
             frutaAnterior = nome_classe_predita
-            print("timer zerou")
+            print("timer do peso bruto zerou")
         elif nome_classe_predita == frutaAnterior and confidencia > 0.71 and timer == 0:
-            print("entrou xd")
+            print("entrou peso bruto")
             timer = 30
             # Executa o loop de eventos asyncio
             asyncio.run(main()) 
 
-    elif nome_classe_predita == 'pote':
+    elif nome_classe_predita == fruta_pesada and pesoBruto > 0:
         timer -= 1
         if timer < 0:
             timer = 30
-        elif nome_classe_predita != frutaAnterior:
+        elif nome_classe_predita != fruta_pesada:
             timer = 30
-            frutaAnterior = nome_classe_predita
-            print("timer do pote zerou")
-        elif nome_classe_predita == frutaAnterior and confidencia > 0.71 and timer == 0:
-            print("o pote entrou xd")
+            print("timer do peso liquido zerou")
+        elif nome_classe_predita == fruta_pesada and confidencia > 0.71 and timer == 0:
+            print("o peso liquido entrou xd")
             timer = 30
             # Executa o loop de eventos asyncio
             asyncio.run(main2()) 
